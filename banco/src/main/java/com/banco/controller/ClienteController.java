@@ -1,6 +1,7 @@
 package com.banco.controller;
 
 import org.springframework.http.HttpStatus;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,16 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @GetMapping
+    public ResponseEntity<List<Cliente>> getAllClientes(){
+
+        List<Cliente> clientes = clienteService.getAllClientes();
+        if(!clientes.isEmpty()) {
+            return new ResponseEntity<>(clientes, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(clientes, HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping("/{id}")
     public ResponseEntity <Cliente> getClientesById(@PathVariable Long id){
          Cliente cliente = clienteService.getClienteById(id);

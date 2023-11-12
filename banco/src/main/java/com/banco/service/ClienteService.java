@@ -3,7 +3,9 @@ package com.banco.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+
 
 import org.modelmapper.ModelMapper;
 import com.banco.entities.Cliente;
@@ -17,6 +19,11 @@ public class ClienteService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    public List<Cliente> getAllClientes(){
+        List<Cliente> clientes = clienteRepository.findAll();
+        return clientes;
+    }
 
     public Cliente getClienteById(Long id){
         Cliente cliente = clienteRepository.findById(id).orElse(null);

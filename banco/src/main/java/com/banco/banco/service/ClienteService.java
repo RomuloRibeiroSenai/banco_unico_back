@@ -1,4 +1,4 @@
-package com.banco.service;
+package com.banco.banco.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,8 +8,9 @@ import java.util.Optional;
 
 
 import org.modelmapper.ModelMapper;
-import com.banco.entities.Cliente;
-import com.banco.repository.ClienteRepository;
+
+import com.banco.banco.entities.Cliente;
+import com.banco.banco.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
@@ -17,8 +18,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    // @Autowired
+    // private ModelMapper modelMapper;
 
     public List<Cliente> getAllClientes(){
         List<Cliente> clientes = clienteRepository.findAll();
@@ -41,7 +42,7 @@ public class ClienteService {
         if (cliente_novo.isPresent()) {
             Cliente existente = cliente_novo.get();
 
-            modelMapper.map(clienteAtualizado, existente);
+            // modelMapper.map(clienteAtualizado, existente);
             existente = clienteRepository.save(existente);
 
             return existente;

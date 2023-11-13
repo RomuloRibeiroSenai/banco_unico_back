@@ -1,4 +1,4 @@
-package com.banco.entities;
+package com.banco.banco.entities;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+
 import com.google.gson.Gson;
 
 @Data

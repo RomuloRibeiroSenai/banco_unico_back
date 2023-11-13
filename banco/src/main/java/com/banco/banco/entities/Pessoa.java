@@ -1,4 +1,4 @@
-package com.banco.entities;
+package com.banco.banco.entities;
 
 import lombok.Data;
 import jakarta.persistence.MappedSuperclass;

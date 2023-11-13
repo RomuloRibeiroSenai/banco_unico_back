@@ -1,4 +1,4 @@
-package com.banco.entities;
+package com.banco.banco.entities;
 
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Entity;
@@ -17,8 +17,8 @@ public class Operacao {
     private Long id;
     private String tipo;
     private double valor;
-
-    @ManyToOne
+    
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "operacao_fkey"))
     private Cliente cliente;
 }

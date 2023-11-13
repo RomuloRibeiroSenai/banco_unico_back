@@ -1,10 +1,11 @@
-package com.banco.controller;
+package com.banco.banco.controller;
 
 import org.springframework.http.HttpStatus;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.banco.entities.Cliente;
-import com.banco.service.ClienteService;
+import com.banco.banco.entities.Cliente;
+import com.banco.banco.service.ClienteService;
 
 @RestController
 @RequestMapping("/clientes")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ClienteController {
     
     @Autowired
@@ -28,9 +30,10 @@ public class ClienteController {
 
         List<Cliente> clientes = clienteService.getAllClientes();
         if(!clientes.isEmpty()) {
+            System.out.println(("passo1"));
             return new ResponseEntity<>(clientes, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(clientes, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(clientes, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         }
     }
     @GetMapping("/{id}")

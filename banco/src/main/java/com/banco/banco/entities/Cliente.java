@@ -1,6 +1,8 @@
-package com.banco.entities;
+package com.banco.banco.entities;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -37,5 +39,6 @@ public class Cliente extends Pessoa {
     private Endereco endereco;
 
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Operacao> operacoes;
 }

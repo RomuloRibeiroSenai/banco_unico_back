@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.banco.banco.entities.Cliente;
+import com.banco.banco.entities.Login;
 import com.banco.banco.service.ClienteService;
 
 @RestController
@@ -52,6 +53,22 @@ public class ClienteController {
         Cliente cliente = clienteService.saveCliente(novoCliente);
         return ResponseEntity.ok(cliente);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<Long> login(@RequestBody Login login){
+    String login1 = login.getLogin();
+    String senha = login.getSenha();
+
+    Long clienteId = clienteService.findIdByLoginAndSenha(login1, senha);
+
+    if (clienteId != null) {
+        return new ResponseEntity<>(clienteId, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente (@RequestBody Cliente clienteAtualizado, @PathVariable Long id) {
 

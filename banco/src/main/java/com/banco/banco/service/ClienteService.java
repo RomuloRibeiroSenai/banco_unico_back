@@ -64,4 +64,9 @@ public class ClienteService {
 
         return clienteExistente;
     }
+    public Long findIdByLoginAndSenha(String login, String senha) {
+        Cliente cliente = clienteRepository.findByLoginAndSenha(login, senha);
+        return (cliente != null) ? cliente.getId() : null;
+    }
+    
 }
